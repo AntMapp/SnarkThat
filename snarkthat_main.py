@@ -72,7 +72,7 @@ class SnarkThat():
    #Flatten qeval
     def gate1(self, alpha):
         """function to square input. 
-        alpha * alpha 
+        alpha * alpha
 
         Parameters
         ----------
@@ -264,4 +264,6 @@ class SnarkThat():
         matrixB = self.B_poly_coeffs()
         matrixC = self.C_poly_coeffs()
 
-        return np.dot(s, matrixA[:,0].T) * np.dot(s, matrixB[:,0].T) - np.dot(s, matrixC[:,0].T)
+        check = np.dot(s, matrixA[:,0].T) * np.dot(s, matrixB[:,0].T) - np.dot(s, matrixC[:,0].T)
+
+        return math.isclose(check, 0.0, abs_tol = 1e-4)
