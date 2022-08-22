@@ -1,5 +1,5 @@
 import argparse
-from snarkthat_update import SnarkThat
+from snarkthat_main import SnarkThat
 
 parser = argparse.ArgumentParser()
 subparser = parser.add_subparsers(dest='command')
