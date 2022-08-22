@@ -1,5 +1,5 @@
 import argparse
-from snarkthat import SnarkThat
+from snarkthat_update import SnarkThat
 
 parser = argparse.ArgumentParser()
 subparser = parser.add_subparsers(dest='command')
@@ -13,6 +13,7 @@ prove.add_argument('--a', type=int, required=True)
 prove.add_argument('--b', type=int, required=True)
 verify.add_argument('--a', type=int, required=True)
 verify.add_argument('--b', type=int, required=True)
+plot.add_argument('--p', type=str)
 
 
 args = parser.parse_args()
@@ -28,3 +29,7 @@ elif args.command == 'prove':
 elif args.command == 'verify':
     snarkthat = SnarkThat()
     print(snarkthat.verify(args.a,args.b))
+    
+elif args.command == 'plot':
+    snarkthat = SnarkThat()
+    return snarkthat.plot_poly()
