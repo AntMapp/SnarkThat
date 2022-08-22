@@ -72,7 +72,7 @@ class SnarkThat():
    #Flatten qeval
     def gate1(self, alpha):
         """function to square input. 
-        alpha * alpha
+        alpha * alpha 
 
         Parameters
         ----------
