@@ -11,6 +11,10 @@ from snarkthat_main import SnarkThat
 
 snarkthat=SnarkThat()
 
+def test_r1cs():
+    # assert snarkthat.r1cs == np.ndarray
+    assert snarkthat.r1cs.shape == (3,5,8)
+
 def test_snarkthat_gates():
     assert snarkthat.gate1(3) == 3**2
     assert snarkthat.gate2(3) == 3**3
