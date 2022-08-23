@@ -260,10 +260,24 @@ class SnarkThat():
         evaluating at x = 1
         """
         s = self.arithmetic_circuit(alpha,beta)
-        matrixA = self.A_poly_coeffs()
-        matrixB = self.B_poly_coeffs()
-        matrixC = self.C_poly_coeffs()
+        
+        mat_A = self.A_poly_coeffs()
+        mat_B = self.B_poly_coeffs()
+        mat_C = self.C_poly_coeffs()
+        
+        s_A = np.dot(s, mat_A)
+        s_B = np.dot(s, mat_B)
+        s_C = np.dot(s, mat_C)
+            
+        if alpha<abs(10) | beta<abs(10):
+            #control measure for overflow due exponential large numbers.
+            lhs = np.exp(s_A.sum()*s_B.sum())
+            rhs = np.exp(s_C.sum())
+        else:
+            lhs = s_A.sum()*s_B.sum()
+            rhs = s_C.sum()
 
-        check = np.dot(s, matrixA[:,0].T) * np.dot(s, matrixB[:,0].T) - np.dot(s, matrixC[:,0].T)
-
-        return math.isclose(check, 0.0, abs_tol = 1e-4)
+        acc_metric1 = abs(rhs - lhs)/lhs * 100 #a measure of proximity between s.A*s.B and s.C
+        
+        print('\n verify: ',np.isclose(lhs,rhs), '\n accuracy%: ',acc_metric1)
+        
