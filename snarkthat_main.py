@@ -226,6 +226,7 @@ class SnarkThat():
         ax.set_xlabel('$x$', fontsize=12)
         ax.grid(True)
         ax.legend(loc='best', fontsize=8)
+        ax.set_ylim([-15, 15])
         
     
     def plot_poly(self):
@@ -254,7 +255,7 @@ class SnarkThat():
         """
         s.A(x) * s.B(x) = s.C(x)
         evaluating at x = 1
-        logically using s.A * s.B == s.C; hence, remainder of (s.A*s.B)/s.C = 0 (approx.)
+        logically if s.A * s.B == s.C; remainder of (s.A*s.B)/s.C = 0 (approx.)
         """
         s = self.arithmetic_circuit(alpha,beta)
         
