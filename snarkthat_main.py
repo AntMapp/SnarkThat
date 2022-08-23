@@ -279,5 +279,5 @@ class SnarkThat():
 
         acc_metric1 = abs(rhs - lhs)/lhs * 100 #a measure of proximity between s.A*s.B and s.C
         
-        print('\n verify: ',np.isclose(lhs,rhs), '\n accuracy%: ',acc_metric1)
+        print('\n verify: ',np.isclose(lhs,rhs), '\n proximity%: ',acc_metric1)
         
