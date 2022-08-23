@@ -58,7 +58,6 @@ class SnarkThat():
     def qeval(self, alpha, beta):
         """
         evaluates a**3 * 2b - 5; where (a,b) corresponds to (alpha,beta)
-
         Parameters
         ----------
         a : int
@@ -73,7 +72,6 @@ class SnarkThat():
     def gate1(self, alpha):
         """function to square input. 
         alpha * alpha
-
         Parameters
         ----------
         alpha : int
@@ -132,7 +130,6 @@ class SnarkThat():
     def arithmetic_circuit(self, alpha, beta):
         """
         flattens function a**3 * 2b - 5
-
         Parameters
         ----------
         alpha : int
@@ -157,7 +154,6 @@ class SnarkThat():
     def poly(self, xi, yi):
         """
         function computes lagrange polynomial for set of points (x,y).
-
         Paramters
         ---------
         xi : array
@@ -256,8 +252,9 @@ class SnarkThat():
         
     def verify(self, alpha, beta):
         """
-        s.A(x) * s.B(x) - s.C(x) = 0
+        s.A(x) * s.B(x) = s.C(x)
         evaluating at x = 1
+        logically using s.A * s.B == s.C; hence, remainder of (s.A*s.B)/s.C = 0 (approx.)
         """
         s = self.arithmetic_circuit(alpha,beta)
         
@@ -280,4 +277,3 @@ class SnarkThat():
         acc_metric1 = abs(rhs - lhs)/lhs * 100 #a measure of proximity between s.A*s.B and s.C
         
         print('\n verify: ',np.isclose(lhs,rhs), '\n proximity%: ',acc_metric1)
-        
