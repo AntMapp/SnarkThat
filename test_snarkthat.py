@@ -42,5 +42,32 @@ def test_poly_coeffs():
     assert type(snarkthat.C_poly_coeffs()) == np.ndarray
     assert snarkthat.C_poly_coeffs().shape == (8,5)
 
+def test_altr1cs():
+    # assert snarkthat.r1cs == np.ndarray
+    assert snarkthat.alt_r1cs.shape == (3,4,7)
 
+def test_snarkthat_gates():
+    assert snarkthat.alt_gate1(3) == 3**2
+    assert snarkthat.alt_gate2(3) == 3**3
+    assert snarkthat.alt_gate3(3,3) == 27*6
+    assert snarkthat.alt_gate4(3,3) == snarkthat.flat_qeval(3,3)
+    
 
+def test_alt_witness():
+    assert snarkthat.alt_witness(3,3)[0] == 1
+    assert snarkthat.alt_witness(3,3)[1] == 3
+    assert snarkthat.alt_witness(3,3)[2] == 3
+    assert snarkthat.alt_witness(3,3)[3] == snarkthat.flat_qeval(3,3)
+    assert snarkthat.alt_witness(3,3)[4] == 3**2
+    assert snarkthat.alt_witness(3,3)[5] == 3**3 
+    assert snarkthat.alt_witness(3,3)[6] == 3**3 * 2*3 
+
+def test_alt_poly_coeffs():
+    assert type(snarkthat.alt_Apoly_coeffs()) == np.ndarray
+    assert snarkthat.alt_Apoly_coeffs().shape == (7,4)
+
+    assert type(snarkthat.alt_Bpoly_coeffs()) == np.ndarray
+    assert snarkthat.alt_Bpoly_coeffs().shape == (7,4)
+    
+    assert type(snarkthat.alt_Cpoly_coeffs()) == np.ndarray
+    assert snarkthat.alt_Cpoly_coeffs().shape == (7,4)
