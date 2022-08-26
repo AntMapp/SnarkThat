@@ -85,7 +85,7 @@ class SnarkThat():
 
    #Flatten qeval
 
-    def flat_qeval(alpha, beta):
+    def flat_qeval(self,alpha, beta):
         """
         flattened equation
         
@@ -163,7 +163,7 @@ class SnarkThat():
         """
         return self.gate2(alpha)*self.gate3(beta)
     
-    def alt_gate4(alpha, beta):
+    def alt_gate4(self, alpha, beta):
         """
         final gate output equivalant to qeval()
         """
@@ -208,7 +208,7 @@ class SnarkThat():
         _one = 1
         _gate1 = self.alt_gate1(alpha) #phi = alpha**2 or alpha*alpha
         _gate2 = self.alt_gate2(alpha) #alpha**3
-        _gate3 = self.gate3(beta) #alpha**3 *2 * beta; this may go against the one operation to a function rule (but this route can serve as a comparison maybe)
+        _gate3 = self.alt_gate2(alpha) * self.gate3(beta) #alpha**3 *2 * beta; this may go against the one operation to a function rule (but this route can serve as a comparison maybe)
         _out = self.alt_gate3(alpha, beta) - 5 #final output: a**3 *2b -5
         
         alt_s = np.array([_one, alpha, beta, _out, _gate1, _gate2, _gate3]) #these variables are local; so should not overlap with variables in the main arithmetic_circuit method.
